@@ -13,7 +13,7 @@ app.controller('authCtrl', function($scope, $state, AuthService) {
     } else {
       AuthService.register(user)
         .then(function(res) {
-          $state.go('home')
+          $state.go('profile')
           console.log('res:', res);
         }, function(err) {
           console.error(err);
@@ -22,7 +22,7 @@ app.controller('authCtrl', function($scope, $state, AuthService) {
   } else {
     AuthService.login(user)
       .then(function(res) {
-        $state.go('home')
+        $state.go('profile')
         console.log('res:', res);
       }, function(err) {
         console.error(err);

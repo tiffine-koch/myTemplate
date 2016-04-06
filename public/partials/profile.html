@@ -3,7 +3,7 @@
 <div class="row">
   <h4 id="singleHeader">Me.</h4>
   <div class="col 6">
-    <img src="/img/gattara.gif" alt="">
+    <!-- <img src="/img/gattara.gif" alt=""> -->
   </div>
 </div>
   <div class="row">
@@ -23,9 +23,17 @@
       <h4 id="singleHeader">vs. Beer</h4>
       <div class="card blue lighten-2" ng-click="addBeer">
         <div class="card-content center-align">
-            <div class="card-title truncate white-text text-darken-4">{{user.name}}</div>
+            <div class="card-title truncate white-text text-darken-4">{{beer.data.name}}</div>
             <img class="circle" ng-src="{{user.image}}">
         </div>
+        <hr>
+        <p class="white-text text-darken-4">{{beer.data.style.description}}</p>
+        <p id="userAdd">
+          <input type="checkbox" id="test{{$index + 1}}" class="writing" ng-model='beer.sampled' ng-change="sampled()"/>
+          <label for="test{{$index + 1}}">Beer Sampled</label>
+          <input type="text" ng-model="beer.comment" id='comment' class="checkbox">
+          <label for="">Add a comment above this line</label>
+        </p>
       </div>
     </div>
   </div>

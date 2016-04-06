@@ -6,3 +6,10 @@ body {
 a {
   color: #00B7FF;
 }
+
+.checkbox {
+  color: white;
+}
+input.writing {
+  color: white;
+}

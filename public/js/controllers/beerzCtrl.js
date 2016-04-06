@@ -11,4 +11,12 @@ app.controller('beerzCtrl', function($scope, $http, BeerService) {
   }, function(err) {
     console.err('err:', err);
   })
+  BeerService.getOne()
+  .then(function(res) {
+    $scope.beers = res.data;
+    console.log('res:', res);
+  }, function(err) {
+    console.err('err:', err);
+  })
+
 });

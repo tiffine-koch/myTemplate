@@ -10,21 +10,18 @@ var Beer = require('../models/beer');
 
 router.get('/', function(req, res, next) {
   request('http://api.brewerydb.com/v2/categories?key=b6bf5c4d79d28c9a4c6840de99f42bef', function(error, response, body) {
-    // if(!error && response.statusCode = 200) {
       console.log(body);
-      // var beers = body;
-    // }
+      var beers = JSON.parse(body);
+      console.log(beers);
+      res.send(beers);
     });
-    res.send(response);
 });
 router.get('/random', function(req, res, next) {
   request('http://api.brewerydb.com/v2/beer/random?key=b6bf5c4d79d28c9a4c6840de99f42bef', function(error, response, body) {
-    // if(!error && response.statusCode = 200) {
       console.log(body);
-      // var beers = body;
-    // }
+      var random = JSON.parse(body);
+      res.send(random);
     });
-    res.send(response);
 });
 
 router.get('/:id', function(req, res) {

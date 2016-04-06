@@ -7,7 +7,7 @@
     <label for="username">Username:</label>
     <input type="text"
             class="form-control"
-            ng-model="user.username"
+            ng-model="user.name"
             name="username"
             id="username"
             required>
@@ -41,7 +41,7 @@
   <div class="form-group" ng-if='state === "login"'>
     <button type="submit"
             ng-disable="authForm.#invalid"
-            class='btn btn-default' ui-sref='locations'>
+            class='btn btn-default' ui-sref='profile'>
             {{state | titlecase}}!
     </button>
   </div>

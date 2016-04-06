@@ -2,19 +2,29 @@
 
 var app = angular.module('myApp');
 
-app.controller('profileCtrl', function($scope, $http, UserService, BeerService) {
+app.controller('profileCtrl', function($scope, $http, UserService, BeerService, $rootScope) {
   console.log('profile');
 
-  $scope.singleUser = function(user) {
-    var id = user._id;
-    UserService.getOne(id)
-      .then(function(response){
-        $rootScope.user = response.data;
-        var user = $scope.user;
-      }, function(error){
-        console.log('error');
-    });
-  };
+  BeerService.getRandom()
+  .then(function(res) {
+    $scope.beer = res.data;
+    var beer = $scope.beer;
+    console.log('res:', res);
+    console.log('beer', beer);
+    console.log('beer.name', beer.data.name);
+  }, function(err) {
+    console.err('err:', err);
+  })
+
+  // var id = user._id;
+  UserService.getOne()
+    .then(function(response){
+      $rootScope.user = response.data;
+      console.log($rootScope.user);
+      // var user = $rootScope.user;
+    }, function(error){
+      console.log('error');
+  });
 
   $scope.showList = function() {
 
