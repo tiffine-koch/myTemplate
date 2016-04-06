@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var bcrypt = require('bcryptjs');
+var mongoose = require('mongoose');
 var jwt = require('jwt-simple');
 
 var app = express();
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
+app.use('/beers', require('./routes/beers'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

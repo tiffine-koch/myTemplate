@@ -1,0 +1,39 @@
+<div class="container">
+    <form class="col s12" name='catForm' autocomplete='off'>
+      <div class="row">
+        <div id="formBorder" class="col s6">
+            <!-- <img id="catFormPic" src="img/beer.jpg" alt=""> -->
+            <h4>Create your profile</h4>
+        </div>
+        <div class="col s6" id="formHeader">
+        </div>
+      </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="material-icons prefix">perm_identity</i>
+        <input id="icon_prefix" type="text" name="name" ng-model='user.name' name='name' required minlength='1'>
+        <label for="icon_prefix">Enter your name</label>
+      </div>
+      <div class="input-field col s6">
+        <i class="material-icons prefix">picture_in_picture</i>
+        <input type="text" class="validate" ng-model="user.image" required>
+        <label for="">Image URL</label>
+      </div>
+      <div class="row">
+
+      <div class="input-field col s5">
+        <i class="material-icons prefix">picture_in_picture</i>
+        <input type="text" class="validate" ng-model="user.email" required>
+        <label for="">Email</label>
+      </div>
+      <div class="input-field col s5">
+        <i class="material-icons prefix">picture_in_picture</i>
+        <input type="text" class="validate" ng-model="user.password" required>
+        <label for="">Password</label>
+      </div>
+    </div>
+    <div class="col s2">
+      <a type='button' class="btn-floating btn-large red"><i class="fa fa-heart-o" ng-click="submitForm(user)"></i></a>
+      <!-- <a type='button' class="btn-floating btn-large red"><i class="fa fa-heart-o" ng-click="submitCatForm(user)" ui-sref='profile'></i></a> -->
+    </div>
+  </div>

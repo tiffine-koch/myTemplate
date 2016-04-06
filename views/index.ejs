@@ -16,9 +16,11 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
     <script src="js/module.js"></script>
+    <script src="js/controllers/homeCtrl.js"></script>
     <script src="js/controllers/formCtrl.js"></script>
+    <script src="js/controllers/profileCtrl.js"></script>
   </head>
-  <body ng-app='templateApp' ng-controller='homeCtrl'>
+  <body ng-app='myApp' ng-controller='homeCtrl'>
     <h1>Template</h1>
       <ng-include src="'./partials/nav.html'"></ng-include>
       <ui-view></ui-view>

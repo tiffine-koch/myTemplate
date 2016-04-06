@@ -1,7 +1,7 @@
 'use strict';
 
-var app = angular.module('templateApp');
+var app = angular.module('myApp');
 
-app.controller('homeCtrl', function($scope, $http, TestService) {
+app.controller('homeCtrl', function($scope, $http) {
   console.log('home');
 });
