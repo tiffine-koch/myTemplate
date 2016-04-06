@@ -13,7 +13,7 @@ app.service('UserService', function($http) {
   };
 
   this.create = function(user) {
-    return $http.post('/ladies', user);
+    return $http.post('/users', user);
   };
 
   this.update = function(beerId, updateObj) {

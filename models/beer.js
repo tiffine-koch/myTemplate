@@ -6,6 +6,8 @@ var beerSchema = mongoose.Schema({
   name: String,
   description: String,
   rating: Number,
+  comment: [{type: String}],
+  // comment: String,
   sampled: { type: Boolean, default: false }
 });
 

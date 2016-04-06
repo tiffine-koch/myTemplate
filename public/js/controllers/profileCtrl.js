@@ -14,6 +14,9 @@ app.controller('profileCtrl', function($scope, $http, UserService, BeerService) 
       }, function(error){
         console.log('error');
     });
+  };
+
+  $scope.showList = function() {
 
     BeerService.getAll()
     .then(function(res) {
@@ -22,5 +25,5 @@ app.controller('profileCtrl', function($scope, $http, UserService, BeerService) 
     }, function(err) {
       console.err('err:', err);
     })
-  }
+  };
 });

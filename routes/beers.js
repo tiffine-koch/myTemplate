@@ -1,17 +1,40 @@
 'use strict';
 
 var express = require('express');
+var http = require('http');
+var request = require('request');
 var router = express.Router();
 
 var User = require('../models/user');
 var Beer = require('../models/beer');
 
 router.get('/', function(req, res, next) {
-  User.find({}, function(err, users) {
-    if(err) return res.status(400).send(err);
-    res.send(users);
-  });
+  request('http://api.brewerydb.com/v2/categories?key=b6bf5c4d79d28c9a4c6840de99f42bef', function(error, response, body) {
+    // if(!error && response.statusCode = 200) {
+      console.log(body);
+      // var beers = body;
+    // }
+    });
+    res.send(response);
 });
+router.get('/random', function(req, res, next) {
+  request('http://api.brewerydb.com/v2/beer/random?key=b6bf5c4d79d28c9a4c6840de99f42bef', function(error, response, body) {
+    // if(!error && response.statusCode = 200) {
+      console.log(body);
+      // var beers = body;
+    // }
+    });
+    res.send(response);
+});
+
+router.get('/:id', function(req, res) {
+  User.findById(req.params.id)
+  .populate('beers')
+  .exec(function(err, user) {
+    if(err || !user) return res.status(400).send(err || "User not found");
+    res.send(user);
+  })
+})
 
 router.get('/:id', function(req, res) {
   User.findById(req.params.id)
