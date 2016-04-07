@@ -40,12 +40,12 @@ app.service('AuthService', function($http, $state, UserService) {
     });
   };
 
-  // this.init = function() {
-  //   $http.get('/users/profile')
-  //     .then(function(res) {
-  //       UserService.set(res.data);
-  //   })
-  // };
+  this.init = function() {
+    $http.get('/users/profile')
+      .then(function(res) {
+        UserService.set(res.data);
+    })
+  };
 });
 
 app.service('UserService', function($http) {

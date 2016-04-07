@@ -14,16 +14,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/');
 });
 
-
 function stateProtection(UserService, $state) {
   if(!UserService.username) {
     $state.go('home');
   }
 }
 
-// app.run(function(AuthService){
-//   AuthService.init();
-// })
+app.run(function(AuthService){
+  AuthService.init();
+})
 
 app.filter('titlecase', function() {
   return function(input) {

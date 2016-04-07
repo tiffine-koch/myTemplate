@@ -1,0 +1,17 @@
+body {
+  background-image: url(/img/hipster.jpg);
+  background-size: cover;
+  background-position: top right;
+  background-position-x: 100%
+  background-position-y: 0%;
+  background-repeat: no-repeat;
+}
+
+#mainHeader {
+  visibility: hidden;
+}
+
+h1 {
+  text-align: right;
+  color: white;
+}

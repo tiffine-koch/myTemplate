@@ -5,6 +5,7 @@ var app = angular.module('myApp');
 app.controller('authCtrl', function($scope, $state, AuthService) {
   $scope.state = $state.current.name;
   $scope.submit = function(user) {
+    console.log('user', user);
   if($scope.state === 'register') {
     if(user.password !== user.password2) {
       $scope.user.password = $scope.user.password2 = '';

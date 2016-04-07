@@ -8,20 +8,20 @@ const JWT_SECRET = 'this is my SUPER secret';
 
 var User;
 
-var userSchema = new mongoose.Schema({
-  name: {type: String, unique: true, required: true},
-  email: {type: String, unique: true, required: true},
-  password: {type: String, required: true},
-  image: {type: String, required: true},
-  beers: [{type: mongoose.Schema.Types.ObjectId, ref: 'Beer'}]
-});
 // var userSchema = new mongoose.Schema({
-//   name: String,
-//   email: String,
-//   password: String,
-//   image: String,
+//   name: {type: String, unique: true, required: true},
+//   email: {type: String, unique: true, required: true},
+//   password: {type: String, required: true},
+//   image: {type: String, required: true},
 //   beers: [{type: mongoose.Schema.Types.ObjectId, ref: 'Beer'}]
 // });
+var userSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  password: String,
+  image: String,
+  beers: [{type: mongoose.Schema.Types.ObjectId, ref: 'Beer'}]
+});
 
 userSchema.statics.register = function(userObj, cb) {
     bcrypt.hash(userObj.password, 10, function(err, hash) {
@@ -40,11 +40,11 @@ userSchema.statics.register = function(userObj, cb) {
 userSchema.statics.authenticate = function(userObj, cb) {
   User.findOne({username: userObj.username}, function(err, dbuser) {
     if(err || !dbuser) {
-      return cb("Authentication failed");
+      return cb("Authentication failed 1");
     }
     bcrypt.compare(userObj.password, dbuser.password, function(err, isGood) {
       if(!isGood) {
-        return cb("Authentication failed");
+        return cb("Authentication failed 2");
       }
       var payload = {
         userId: dbuser._id,

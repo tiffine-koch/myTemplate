@@ -16,12 +16,13 @@ app.controller('profileCtrl', function($scope, $http, UserService, BeerService, 
     console.err('err:', err);
   })
 
-  // var id = user._id;
-  UserService.getOne()
+  var id = user._id;
+  UserService.getOne(id)
     .then(function(response){
-      $rootScope.user = response.data;
-      console.log($rootScope.user);
-      // var user = $rootScope.user;
+      $scope.user = response.data;
+      // $rootScope.user = response.data;
+      console.log($scope.user);
+      var user = $scope.user;
     }, function(error){
       console.log('error');
   });
