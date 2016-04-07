@@ -55,14 +55,14 @@
         </tr>
       </thead>
 
-      <tbody ng-repeat="beer in allBeers | orderBy: 'name' | filter: filterText track by $index">
+      <tbody ng-repeat="beer in beers | orderBy: 'name' | filter: filterText track by $index">
         <tr>
           <td>{{$index + 1}}</td>
-          <td>{{allBeer.name}}</td>
-          <td>{{allBeer.description}}</td>
-          <td>{{allBeer.comment}}</td>
-          <td>{{allBeer.rating}}</td>
-          <td>{{allBeer.sampled}}</td>
+          <td>{{beer.name}}</td>
+          <td>{{beer.description}}</td>
+          <td>{{beer.comment}}</td>
+          <td>{{beer.rating}}</td>
+          <td>{{beer.sampled}}</td>
           <td>
             <p>
               <input type="checkbox" id="next{{$index + 1}}" ng-model='restaurant.arrived' ng-change="addBeer(beer)"/>

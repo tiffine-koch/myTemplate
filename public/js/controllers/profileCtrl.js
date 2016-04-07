@@ -52,11 +52,11 @@ app.controller('profileCtrl', function($scope, $http, UserService, BeerService, 
       })
     }
 
-  $scope.showList = function() {
-
+  $scope.getAll = function() {
     BeerService.getAll()
     .then(function(res) {
-      $rootScope.beers = res.data;
+      $scope.beers = res.data;
+      var beers = $scope.beers;
       console.log('res:', res);
     }, function(err) {
       console.err('err:', err);
