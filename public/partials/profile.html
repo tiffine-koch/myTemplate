@@ -1,83 +1,49 @@
-<h1>Profile</h1>
-
-<div class="row">
-  <h4 id="singleHeader">Me.</h4>
-  <div class="col 6">
-    <!-- <img src="/img/gattara.gif" alt=""> -->
-  </div>
-</div>
+<h1>My Profile</h1>
   <div class="row">
     <div class="col s5 animated fadeInUp" style="-webkit-animation-duration:{{$index * 300}}ms">
       <h4 id="singleHeader">Me.</h4>
       <div class="card blue lighten-2">
         <div class="card-content center-align">
-            <div class="card-title truncate white-text text-darken-4">{{user.name}}</div>
+            <div class="card-title truncate white-text text-darken-4">My name: {{user.name}}</div>
             <img class="circle" ng-src="{{user.image}}">
         </div>
         <hr>
-        <p class="white-text text-darken-4">{{user.email}}</p>
-        <p class="white-text text-darken-4">{{user.password}}</p>
+        <p class="white-text text-darken-4">My email: {{user.email}}</p>
+        <p class="white-text text-darken-4">My password: {{user.password}}</p>
+        <div>
+          <button class="waves-effect waves-light btn teal lighten-3" data-id"10" ng-click="getRandom()"><i class="material-icons left"></i>Try Another Beer</button>
+        </div>
+        <div>
+          <button class="waves-effect waves-light btn teal lighten-3" ng-click="getSampled()"><i class="material-icons left"></i>See Sampled Beer</button>
+        </div>
+        <div>
+          <button class="waves-effect waves-light btn teal lighten-3" ng-click="getAll()"><i class="material-icons left"></i>See All Beer</button>
+        </div>
       </div>
+
     </div>
     <div class="col s5 animated fadeInUp" style="-webkit-animation-duration:{{$index * 300}}ms">
       <h4 id="singleHeader">vs. Beer</h4>
       <div class="card blue lighten-2" ng-click="addBeer">
         <div class="card-content center-align">
             <div class="card-title truncate white-text text-darken-4">{{beer.data.name}}</div>
-            <img class="circle" ng-src="{{user.image}}">
         </div>
         <hr>
         <p class="white-text text-darken-4">{{beer.data.style.description}}</p>
         <p id="userAdd">
-          <input type="checkbox" id="test{{$index + 1}}" class="writing" ng-model='beer.sampled' ng-change="sampled()"/>
-          <label for="test{{$index + 1}}">Beer Sampled</label>
           <input type="text" ng-model="beer.comment" id='comment' class="checkbox">
           <label for="">Add a comment above this line</label>
         </p>
+        <p>
+          <input type="checkbox" id="test{{$index + 1}}" class="writing" ng-model='beer.sampled' ng-change="sampled()" ng-click='addBeer(beer)'/>
+          <label for="test{{$index + 1}}">Beer Sampled</label>
+        </p>
+
       </div>
     </div>
   </div>
-  <table id="sampled">
-      <thead>
-        <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Rating</th>
-            <th>Edit</th>
-        </tr>
-      </thead>
-
-      <tbody ng-repeat="beer in beers | orderBy: 'name' | filter: filterText track by $index">
-        <tr>
-          <td>{{$index + 1}}</td>
-          <td>{{beer.name}}</td>
-          <td>{{beer.description}}</td>
-          <td>{{beer.rating}}</td>
-          <td>{{beer.sampled}}</td>
-          <td>
-            <p>
-              <input type="checkbox" id="test{{$index + 1}}" ng-model='restaurant.indoor' ng-change="guestIndoors()"/>
-              <label for="test{{$index + 1}}"></label>
-            </p>
-          </td>
-          <td>
-            <p>
-              <input type="checkbox" id="next{{$index + 1}}" ng-model='restaurant.arrived' ng-change="guestArrived()"/>
-              <label for="next{{$index + 1}}"></label>
-            </p>
-          </td>
-          <td>
-            <a type="button" ng-click="editRest($index, restaurant)" class="btn-floating cyan lighten-2" ng-href='#/entry'>
-              <i class="tiny material-icons">mode_edit</i>
-            </a>
-          </td>
-          <td>
-            <button ng-click="deleteRest($index, restaurant)" type="button" class="btn-floating deep-orange lighten-2"><i class="small material-icons left">not_interested</i>Delete Me</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <hr>
+  <h3>All Beers</h3>
   <table id="notSampled">
       <thead>
         <tr>
@@ -89,32 +55,23 @@
         </tr>
       </thead>
 
-      <tbody ng-repeat="beer in beers | orderBy: 'name' | filter: filterText track by $index">
+      <tbody ng-repeat="beer in allBeers | orderBy: 'name' | filter: filterText track by $index">
         <tr>
           <td>{{$index + 1}}</td>
-          <td>{{beer.name}}</td>
-          <td>{{beer.description}}</td>
-          <td>{{beer.rating}}</td>
-          <td>{{beer.sampled}}</td>
+          <td>{{allBeer.name}}</td>
+          <td>{{allBeer.description}}</td>
+          <td>{{allBeer.comment}}</td>
+          <td>{{allBeer.rating}}</td>
+          <td>{{allBeer.sampled}}</td>
           <td>
             <p>
-              <input type="checkbox" id="test{{$index + 1}}" ng-model='restaurant.indoor' ng-change="guestIndoors()"/>
-              <label for="test{{$index + 1}}"></label>
-            </p>
-          </td>
-          <td>
-            <p>
-              <input type="checkbox" id="next{{$index + 1}}" ng-model='restaurant.arrived' ng-change="guestArrived()"/>
+              <input type="checkbox" id="next{{$index + 1}}" ng-model='restaurant.arrived' ng-change="addBeer(beer)"/>
               <label for="next{{$index + 1}}"></label>
             </p>
           </td>
+
           <td>
-            <a type="button" ng-click="editRest($index, restaurant)" class="btn-floating cyan lighten-2" ng-href='#/entry'>
-              <i class="tiny material-icons">mode_edit</i>
-            </a>
-          </td>
-          <td>
-            <button ng-click="deleteRest($index, restaurant)" type="button" class="btn-floating deep-orange lighten-2"><i class="small material-icons left">not_interested</i>Delete Me</button>
+            <button ng-click="deleteBeer($index, restaurant)" type="button" class="btn-floating deep-orange lighten-2"><i class="small material-icons left">not_interested</i>Delete Me</button>
           </td>
         </tr>
       </tbody>

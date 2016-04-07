@@ -3,29 +3,54 @@
 var app = angular.module('myApp');
 
 app.controller('profileCtrl', function($scope, $http, UserService, BeerService, $rootScope) {
-  console.log('profile');
+
+  var allBeers = [];
 
   BeerService.getRandom()
   .then(function(res) {
     $scope.beer = res.data;
     var beer = $scope.beer;
-    console.log('res:', res);
-    console.log('beer', beer);
-    console.log('beer.name', beer.data.name);
+    allBeers.push(beer);
   }, function(err) {
     console.err('err:', err);
   })
 
-  var id = user._id;
-  UserService.getOne(id)
+  var user = $rootScope.user;
+
+  $scope.getRandom = function() {
+    console.log('random click');
+    BeerService.getRandom()
+    .then(function(res) {
+      $scope.beer = res.data;
+      var beer = $scope.beer;
+      allBeers.push(beer);
+    }, function(err) {
+      console.err('err:', err);
+    })
+  }
+
+  $scope.getAll = function() {
+    console.log('random click');
+    BeerService.getAll()
+    .then(function(res) {
+      $scope.beerArray = res.data;
+      var beers = $scope.beer;
+    }, function(err) {
+      console.err('err:', err);
+    })
+  }
+
+  $scope.addBeer = function() {
+    console.log('click');
+    var beer = {name: $scope.beer.data.name, description: $scope.beer.data.description, comment: $scope.beer.comment, sampled: $scope.beer.true};
+    console.log('beer', beer);
+    BeerService.create(beer)
     .then(function(response){
-      $scope.user = response.data;
-      // $rootScope.user = response.data;
-      console.log($scope.user);
-      var user = $scope.user;
-    }, function(error){
-      console.log('error');
-  });
+        swal("Keep drinking!");
+      }, function(err){
+        console.error(err);
+      })
+    }
 
   $scope.showList = function() {
 

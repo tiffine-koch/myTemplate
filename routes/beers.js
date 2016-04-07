@@ -24,47 +24,16 @@ router.get('/random', function(req, res, next) {
     });
 });
 
-router.get('/:id', function(req, res) {
-  User.findById(req.params.id)
-  .populate('beers')
-  .exec(function(err, user) {
-    if(err || !user) return res.status(400).send(err || "User not found");
-    res.send(user);
-  })
-})
-
-router.get('/:id', function(req, res) {
-  User.findById(req.params.id)
-  .populate('beers')
-  .exec(function(err, user) {
-    if(err || !user) return res.status(400).send(err || "User not found");
-    res.send(user);
-  })
-})
-
 router.post('/', function(req, res) {
-  User.create(req.body, function(err, user) {
-    res.status(err ? 400 : 200).send(err || user);
+  Beer.create(req.body, function(err, beer) {
+    res.status(err ? 400 : 200).send(err || beer);
   });
 });
 
-router.put('/:userId/addBeer/:beerId', function(req, res) {
-  User.findById(req.params.userId, function(err, user) {
-    if(err || !user) return res.status(400).send(err || "User not found");
-    Beer.findById(req.params.beerId, function(err, beer) {
-      if(err || !beer) return res.status(400).send(err || "Beer not found");
-      user.beers.push(req.params.beerId);
-
-      user.save(function(err, savedUser) {
-        res.status(err ? 400 : 200).send(err || savedUser);
-      });
-    })
-  })
-})
 
 router.delete('/:id', function(req, res) {
-  User.findById(req.params.id, function(err, user) {
-    user.remove(function(err) {
+  Beer.findById(req.params.id, function(err, beer) {
+    beer.remove(function(err) {
       if(err) {
         res.status(400).send(err);
         return;

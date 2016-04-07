@@ -8,18 +8,11 @@ const JWT_SECRET = 'this is my SUPER secret';
 
 var User;
 
-// var userSchema = new mongoose.Schema({
-//   name: {type: String, unique: true, required: true},
-//   email: {type: String, unique: true, required: true},
-//   password: {type: String, required: true},
-//   image: {type: String, required: true},
-//   beers: [{type: mongoose.Schema.Types.ObjectId, ref: 'Beer'}]
-// });
 var userSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  password: String,
-  image: String,
+  name: {type: String, unique: true, required: true},
+  email: {type: String, unique: true, required: true},
+  password: {type: String, required: true},
+  image: {type: String, required: true},
   beers: [{type: mongoose.Schema.Types.ObjectId, ref: 'Beer'}]
 });
 
